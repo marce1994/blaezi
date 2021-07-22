@@ -13,7 +13,8 @@ import (
 
 // The client should be able to perform a request
 type Client interface {
-	PerformRequest(r *http.Request) (*http.Response, error)
+	// Do sends an HTTP request and returns an HTTP response. Adapted for being compliant withnet/http.
+	Do(r *http.Request) (*http.Response, error)
 }
 
 // Creates a HTTP client.

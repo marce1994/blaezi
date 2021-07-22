@@ -24,7 +24,7 @@ func main() {
 	}
 
 	// throw err if the base URL is invalid
-	baseURL, err := parseBaseURL(args[0])
+	baseURL, err := extractBaseURL(args[0])
 	if err != nil {
 		fmt.Println("Invalid base URL specified. Stopping smoke test.")
 		os.Exit(0)
@@ -43,12 +43,11 @@ func main() {
 		fmt.Println("insecure mode.")
 	}
 
-	// TODO:
 	// create a new HTTP client
-	client := Client(*secure, timeout)
+	client := HTTPClient(*secure, *timeout)
 
 	// create a new inspector object
-	inspector := Inspector(client, baseURL)
+	inspector := NewInspector(client, baseURL)
 
 	// process using the object
 	results, errors := inspector.Test(extractedTests)
@@ -65,6 +64,7 @@ func main() {
 
 	// Show final stats (prettified)
 	fmt.Println(results.countSuccess(), " tests passed out of", len(extractedTests), "tests.")
+
 	// TODO:
 	// Show time stats
 	// Show failure message if tests fail
