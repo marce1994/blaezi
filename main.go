@@ -11,6 +11,7 @@ func main() {
 	// basic flags
 	var testFile = flag.String("tests", "test.yml", "Complete path to the tests.")
 	var secure = flag.Bool("secure", false, "Secure connection.")
+	var timeout = flag.Int("timeout", 5, "Timeout for client.")
 
 	// parse flags and get args
 	flag.Parse()
@@ -44,7 +45,7 @@ func main() {
 
 	// TODO:
 	// create a new HTTP client
-	client := Client(*secure)
+	client := Client(*secure, timeout)
 
 	// create a new inspector object
 	inspector := Inspector(client, baseURL)
