@@ -44,13 +44,27 @@ func main() {
 
 	// TODO:
 	// create a new HTTP client
-	// create a new object
+	client := Client(*secure)
+
+	// create a new inspector object
+	inspector := Inspector(client, baseURL)
 
 	// process using the object
-	// get result
+	results, errors := inspector.Test(extractedTests)
 
 	// print result for each test
+	for _, result := range results {
+		fmt.Println(result)
+	}
+
 	// throw errors if raised (in tests)
+	for _, err := range errors {
+		fmt.Println(err)
+	}
 
 	// Show final stats (prettified)
+	fmt.Println(results.countSuccess(), " tests passed out of", len(extractedTests), "tests.")
+	// TODO:
+	// Show time stats
+	// Show failure message if tests fail
 }
