@@ -6,9 +6,14 @@ blaezi can perform smoke tests on endpoints specified by the user. blaezi also h
 
 ## Installation
 
-blaezi is under testing for GitHub Actions. The README will be updated when tests are done and a release is made.
-
-You can clone the repo and run `go run main.go` for testing `blaezi`.
+- **Using GitHub Actions:**
+  - You can integrate blaezi with GitHub Actions. [Click here for an example.](https://github.com/burntcarrot/blaezi-action-test)
+- **Using releases:**
+  - Binaries are available under [Releases.](https://github.com/burntcarrot/blaezi/releases)
+- **Using source code:**
+  - You can clone the repo and run `go run main.go` for testing `blaezi`:
+  - `git clone https://github.com/burntcarrot/bleazi && cd blaezi`
+  - `go run main.go`
 
 
 ## Usage

@@ -23,7 +23,7 @@ import (
 func main() {
 
 	// basic flags
-	var testFile = flag.String("tests", "test.json", "Complete path to the tests.")
+	var testsFile = flag.String("tests", "test.json", "Complete path to the tests file.")
 	var secure = flag.Bool("secure", false, "Secure connection.")
 	var timeout = flag.Int("timeout", 5, "Timeout for client.")
 
@@ -45,7 +45,7 @@ func main() {
 	}
 
 	// extract tests from file
-	extractedTests, err := extractTests(*testFile)
+	extractedTests, err := extractTests(*testsFile)
 	if err != nil {
 		fmt.Printf("Error raised while extracting tests: %s\n", err.Error())
 		os.Exit(1)
