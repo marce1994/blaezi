@@ -9,7 +9,7 @@ import (
 func main() {
 
 	// basic flags
-	var testFile = flag.String("tests", "test.yml", "Complete path to the tests.")
+	var testFile = flag.String("tests", "test.json", "Complete path to the tests.")
 	var secure = flag.Bool("secure", false, "Secure connection.")
 	var timeout = flag.Int("timeout", 5, "Timeout for client.")
 
@@ -54,7 +54,7 @@ func main() {
 
 	// print result for each test
 	for _, result := range results {
-		fmt.Println(result)
+		fmt.Println(prettifyResult(result))
 	}
 
 	// throw errors if raised (in tests)
@@ -67,5 +67,11 @@ func main() {
 
 	// TODO:
 	// Show time stats
+
 	// Show failure message if tests fail
+	if results.countSuccess() != len(extractedTests) {
+		termColorFormat := "\033[031m%s\033[0m"
+		fmt.Println(fmt.Sprintf(termColorFormat, "Some tests failed."))
+		os.Exit(2)
+	}
 }

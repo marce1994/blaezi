@@ -71,8 +71,8 @@ func extractTests(file string) (Tests, error) {
 
 	// Handle invalid tests
 	for _, test := range tests {
-		if test.URL == "" || test.StatusCode == 0 {
-			return nil, errors.New("URL not found. Please verify your test.")
+		if test.URL == "" || test.StatusCodeExpected == 0 {
+			return nil, errors.New("URL/Status Code not found. Please verify your test.")
 		}
 	}
 
@@ -82,7 +82,24 @@ func extractTests(file string) (Tests, error) {
 // TODO: This is a placeholder
 // There needs to be a lot of work to be done here.
 func prettifyResult(result Result) string {
-	output := fmt.Sprintf("Expected Status Code: %d\nStatus Code: %d\nURL:%s", result.StatusCodeExpected, result.StatusCode, result.URL)
+	output := fmt.Sprintf("Expected Status Code: %d\nStatus Code: %d\nURL: %s", result.Test.StatusCodeExpected, result.StatusCode, result.Test.URL)
 
-	return output
+	// if content is not empty, return result with content
+	if result.Test.Content != "" {
+		output = fmt.Sprintf("Expected Status Code: %d\nStatus Code: %d\nURL: %s\nContent: %s", result.Test.StatusCodeExpected, result.StatusCode, result.Test.URL, result.Test.Content)
+	}
+
+	// prettify using color
+	color := 32
+	status := "PASS"
+
+	if !result.Passed() {
+		color = 31
+		status = "FAIL"
+	}
+
+	// TODO: Check compatibility
+	termColorFormat := "\033[%dm[%s]\n%s\033[0m"
+
+	return fmt.Sprintf(termColorFormat, color, status, output)
 }

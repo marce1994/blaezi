@@ -1,9 +1,11 @@
 package main
 
+import "strings"
+
 type Test struct {
-	URL                string
-	StatusCodeExpected int
-	Content            string
+	URL                string `json:"url"`
+	StatusCodeExpected int    `json:"status_code"`
+	Content            string `json:"content"`
 }
 
 type Result struct {
@@ -23,7 +25,7 @@ func (result Result) Passed() bool {
 
 	// Then, check the content.
 	// TODO: Add string matching (i.e. if a part of string is equal, then tests should return true)
-	if result.Test.Content != "" && result.Test.Content != string(result.Content) {
+	if result.Test.Content != "" && !strings.Contains(string(result.Content), result.Test.Content) {
 		return false
 	}
 
