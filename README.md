@@ -1,4 +1,4 @@
-# blaezi
+# 🔥 blaezi
 
 blaezi is a super-lightweight smoke testing tool with zero dependencies, written purely in Go.
 
@@ -16,7 +16,8 @@ blaezi can perform smoke tests on endpoints specified by the user. blaezi also h
   - You can clone the repo and run `go run main.go` for testing `blaezi`:
   - `git clone https://github.com/burntcarrot/blaezi && cd blaezi`
   - `go run main.go`
-
+- **Docker:**
+  - Docker support coming soon.
 
 ## Usage
 
@@ -69,3 +70,9 @@ If you want to specify a timeout for 10 seconds, you can do so by:
 ```
 ./blaezi http://localhost:8080 -tests test.json -timeout 10
 ```
+
+#### Acknowledgements:
+
+Some parts of `blaezi` were inspired by [vape](https://github.com/symm/vape).
+
+`blaezi` is rewritten from scratch and aims to add additional features on top of [vape](https://github.com/symm/vape). (Spoiler: `blaezi` currently provides some features like GitHub integration, etc.)

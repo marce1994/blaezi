@@ -18,6 +18,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"time"
 )
 
 func main() {
@@ -64,6 +65,9 @@ func main() {
 	// create a new inspector object
 	inspector := NewInspector(client, baseURL)
 
+	// set timer for pretty-printing at display
+	testStart := time.Now()
+
 	// process using the object
 	results, errors := inspector.Test(extractedTests)
 
@@ -77,16 +81,14 @@ func main() {
 		fmt.Println(err)
 	}
 
-	// Show final stats (prettified)
-	fmt.Println(results.countSuccess(), " tests passed out of", len(extractedTests), "tests.")
-
-	// TODO:
-	// Show time stats
-
 	// Show failure message if tests fail
 	if results.countSuccess() != len(extractedTests) {
-		termColorFormat := "\033[031m%s\033[0m"
-		fmt.Println(fmt.Sprintf(termColorFormat, "Some tests failed."))
+		termColorFormat := "\033[031m\n%s\n%d %s %d %s in %s\033[0m"
+		fmt.Println(fmt.Sprintf(termColorFormat, "💨 Some tests failed.", results.countSuccess(), "tests passed out of", len(extractedTests), "tests", time.Since(testStart)))
+
 		os.Exit(2)
+	} else {
+		termColorFormat := "\033[032m\n%s\n%d %s %d %s in %s\033[0m"
+		fmt.Println(fmt.Sprintf(termColorFormat, "🥳✨ All tests were successful!", results.countSuccess(), "tests passed out of", len(extractedTests), "tests", time.Since(testStart)))
 	}
 }

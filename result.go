@@ -38,7 +38,6 @@ func (result Result) Passed() bool {
 	}
 
 	// Then, check the content.
-	// TODO: Add string matching (i.e. if a part of string is equal, then tests should return true)
 	if result.Test.Content != "" && !strings.Contains(string(result.Content), result.Test.Content) {
 		return false
 	}

@@ -59,14 +59,13 @@ func extractBaseURL(baseURL string) (*url.URL, error) {
 
 	// Reject any other protocol except HTTP & HTTPS.
 	if url.Scheme != "http" && url.Scheme != "https" {
-		return nil, errors.New("Invalid protocol.")
+		return nil, errors.New("invalid protocol used in base URL")
 	}
 
 	return url, nil
 }
 
 // Parse config file and extract tests.
-// TODO: Implement proposed Tests struct
 func extractTests(file string) (Tests, error) {
 	content, err := ioutil.ReadFile(file)
 
@@ -86,7 +85,7 @@ func extractTests(file string) (Tests, error) {
 	// Handle invalid tests
 	for _, test := range tests {
 		if test.URL == "" || test.StatusCodeExpected == 0 {
-			return nil, errors.New("URL/Status Code not found. Please verify your test.")
+			return nil, errors.New("status code/URL not found. Please verify your test")
 		}
 	}
 
