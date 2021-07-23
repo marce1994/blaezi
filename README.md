@@ -4,6 +4,8 @@ blaezi is a super-lightweight smoke testing tool with zero dependencies, written
 
 blaezi can perform smoke tests on endpoints specified by the user. blaezi also has the ability to check the content of the endpoint.
 
+🔥 **You can see blaezi in action [here.](https://github.com/burntcarrot/blaezi-action-test/actions)**
+
 ## Installation
 
 - **Using GitHub Actions:**
@@ -12,7 +14,7 @@ blaezi can perform smoke tests on endpoints specified by the user. blaezi also h
   - Binaries are available under [Releases.](https://github.com/burntcarrot/blaezi/releases)
 - **Using source code:**
   - You can clone the repo and run `go run main.go` for testing `blaezi`:
-  - `git clone https://github.com/burntcarrot/bleazi && cd blaezi`
+  - `git clone https://github.com/burntcarrot/blaezi && cd blaezi`
   - `go run main.go`
 
 
