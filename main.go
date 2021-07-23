@@ -37,7 +37,8 @@ func main() {
 		os.Exit(1)
 	}
 
-	if *secure == true {
+	// TODO: Implement certificate check for HTTPS connections
+	if *secure {
 		fmt.Println("secure mode.")
 	} else {
 		fmt.Println("insecure mode.")
