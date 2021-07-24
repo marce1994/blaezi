@@ -19,6 +19,7 @@ import (
 	"net/http"
 	"net/url"
 	"path"
+	"strings"
 	"sync"
 )
 
@@ -59,7 +60,7 @@ func (inspector Inspector) runTest(test Test) (Result, error) {
 	}
 
 	// Send a new GET request
-	req, err := http.NewRequest("GET", parsedURL.String(), nil)
+	req, err := http.NewRequest(test.Method, parsedURL.String(), strings.NewReader(test.ReqBody))
 	if err != nil {
 		return Result{}, err
 	}

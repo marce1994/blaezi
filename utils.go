@@ -84,8 +84,8 @@ func extractTests(file string) (Tests, error) {
 
 	// Handle invalid tests
 	for _, test := range tests {
-		if test.URL == "" || test.StatusCodeExpected == 0 {
-			return nil, errors.New("status code/URL not found. Please verify your test")
+		if test.URL == "" || test.StatusCodeExpected == 0 || test.Method == "" {
+			return nil, errors.New("status code/URL/Method not found. Please verify your test")
 		}
 	}
 
@@ -99,7 +99,7 @@ func prettifyResult(result Result) string {
 
 	// if content is not empty, return result with content
 	if result.Test.Content != "" {
-		output = fmt.Sprintf("Expected Status Code: %d\nStatus Code: %d\nURL: %s\nContent: %s", result.Test.StatusCodeExpected, result.StatusCode, result.Test.URL, result.Test.Content)
+		output = fmt.Sprintf("Method: %s\nExpected Status Code: %d\nStatus Code: %d\nURL: %s\nExpected Content: %s\nContent: %s", result.Test.Method, result.Test.StatusCodeExpected, result.StatusCode, result.Test.URL, result.Test.Content, result.Content)
 	}
 
 	// prettify using color

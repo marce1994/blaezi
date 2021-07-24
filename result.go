@@ -20,6 +20,8 @@ type Test struct {
 	URL                string `json:"url"`
 	StatusCodeExpected int    `json:"status_code"`
 	Content            string `json:"content"`
+	Method             string `json:"method"`
+	ReqBody            string `json:"request_body"`
 }
 
 type Result struct {
