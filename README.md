@@ -23,36 +23,47 @@ blaezi can perform smoke tests on endpoints specified by the user. blaezi also h
 
 ```
 Usage of ./blaezi:
+  -auth string
+        Authorization string.
   -secure
         Secure connection.
   -tests string
-        Complete path to the tests. (default "test.json")
+        Complete path to the tests file. (default "test.json")
   -timeout int
         Timeout for client. (default 5)
 ```
 
 ## Tests:
 
-A test can be specified using JSON. `url` and `status_code` are necessary, `content` is optional.
+A test can be specified using JSON. `url`, `status_code` and `method` are necessary, `content`, `request_body` are optional.
 
 Here is a sample test:
 
 ```json
 [
-    {
-      "url": "/",
-      "status_code": 200,
-      "content": "Hello!"
-    },
-    {
-      "url": "/posts",
-      "status_code": 200,
-      "content": "Hello post!"
-    },
-    {
-      "url": "/nonexistent",
-      "status_code": 404
-    }
+  {
+    "url": "/",
+    "status_code": 200,
+    "content": "Hello",
+    "method": "GET"
+  },
+  {
+    "url": "/posts",
+    "status_code": 200,
+    "content": "Hello",
+    "method": "GET"
+  },
+  {
+    "url": "/posts",
+    "status_code": 200,
+    "content": "Hello",
+    "method": "POST",
+    "request_body": "{\"id\": 1, \"title\": \"H\", \"text\": \"Hello\"}"
+  },
+  {
+    "url": "/nonexistent",
+    "status_code": 404
+  }
 ]
 ```
 

@@ -26,10 +26,11 @@ import (
 type Inspector struct {
 	client  Client
 	baseURL *url.URL
+	auth    string
 }
 
-func NewInspector(client Client, baseURL *url.URL) Inspector {
-	return Inspector{client: client, baseURL: baseURL}
+func NewInspector(client Client, baseURL *url.URL, auth string) Inspector {
+	return Inspector{client: client, baseURL: baseURL, auth: auth}
 }
 
 type Tests []Test

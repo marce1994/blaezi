@@ -27,6 +27,7 @@ func main() {
 	var testsFile = flag.String("tests", "test.json", "Complete path to the tests file.")
 	var secure = flag.Bool("secure", false, "Secure connection.")
 	var timeout = flag.Int("timeout", 5, "Timeout for client.")
+	var auth = flag.String("auth", "", "Authorization string.")
 
 	// parse flags and get args
 	flag.Parse()
@@ -63,7 +64,7 @@ func main() {
 	client := HTTPClient(*secure, *timeout)
 
 	// create a new inspector object
-	inspector := NewInspector(client, baseURL)
+	inspector := NewInspector(client, baseURL, *auth)
 
 	// set timer for pretty-printing at display
 	testStart := time.Now()
