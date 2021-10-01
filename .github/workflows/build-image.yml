@@ -1,0 +1,29 @@
+name: Build image
+
+on:
+  push:
+    branches:
+      - main
+env:
+  DOCKER_IMAGE_NAME: blaezi-image
+  IMAGE_REGISTRY_URL: docker.pkg.github.com
+
+jobs:
+  Build-Docker-Image:
+    runs-on: ubuntu-latest
+    needs: Test-Image
+    name: Store Image in GitHub Packages
+    steps:
+      - uses: actions/checkout@v2
+      - name: create image and store in Packages
+        uses: mattdavis0351/actions/docker-gpr@1.3.0
+        with:
+          repo-token: ${{secrets.GITHUB_TOKEN}}
+          image-name: ${{env.DOCKER_IMAGE_NAME}}
+          tag: latest
+
+      - name: Delete old packages
+        uses: actions/delete-package-versions@v1
+        with:
+          package-name: ${{env.DOCKER_IMAGE_NAME}}
+          num-old-versions-to-delete: 1
