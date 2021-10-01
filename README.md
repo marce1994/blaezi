@@ -17,7 +17,25 @@ blaezi can perform smoke tests on endpoints specified by the user. blaezi also h
   - `git clone https://github.com/burntcarrot/blaezi && cd blaezi`
   - `go run main.go`
 - **Docker:**
-  - Docker support coming soon.
+    - You can download the latest image on [gpr](https://github.com/burncarrot/blaezi/pkgs/container/blaezi%2Fblaezi-image) and just try it
+     ```
+     docker run \
+    --rm \
+    -t \
+    -v "$PWD/YOURTEST.json":"/test.json" \
+   -it IMAGE_ID  https://someurl.io -tests "test.json"
+   ```
+    or build by yourself:
+  - `git clone https://github.com/burntcarrot/blaezi`
+  - `docker build . -t blaezi -f Dockerfile --no-cache`
+  - and run it
+  ```
+  docker run \
+    --rm \
+    -t \
+    -v "$PWD/YOURTEST.json":"/test.json" \
+   -it 6f74bb4d078e https://someurl.io -tests "test.json"
+  ```
 
 ## Usage
 
