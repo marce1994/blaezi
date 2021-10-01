@@ -17,5 +17,5 @@ FROM alpine:3.6
 RUN apk add --no-cache ca-certificates
 COPY example.json ./test.json
 COPY --from=0 /go/bin/blaezi  .
-WORKDIR /
+
 ENTRYPOINT ["./blaezi"]
