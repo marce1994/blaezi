@@ -24,9 +24,3 @@ jobs:
           repo-token: ${{secrets.GITHUB_TOKEN}}
           image-name: ${{env.DOCKER_IMAGE_NAME}}
           tag: latest
-
-      - name: Delete old packages
-        uses: actions/delete-package-versions@v1
-        with:
-          package-name: ${{env.DOCKER_IMAGE_NAME}}
-          num-old-versions-to-delete: 1
