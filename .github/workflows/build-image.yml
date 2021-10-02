@@ -9,13 +9,13 @@ on:
   pull_request:
 
 env:
-  DOCKER_IMAGE_NAME: blaezi-image
+  DOCKER_IMAGE_NAME: blaezi
   IMAGE_REGISTRY_URL: docker.pkg.github.com
 
 jobs:
   Build-Docker-Image:
     runs-on: ubuntu-latest
-    name: Store Image in GitHub Packages
+    name: Create Image and Store it in GPR.
     steps:
       - uses: actions/checkout@v2
       - name: create image and store in Packages
