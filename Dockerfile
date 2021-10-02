@@ -3,7 +3,7 @@ FROM golang:alpine
 
 LABEL maintainer="pending"
 
-RUN mkdir -p /go/src/github.com//burntcarrot/blaezi
+RUN mkdir -p /go/src/github.com/burntcarrot/blaezi
 COPY . /go/src/github.com/burntcarrot/blaezi
 
 WORKDIR /go/src/github.com/burntcarrot/blaezi
