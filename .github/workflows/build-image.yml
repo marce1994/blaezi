@@ -23,4 +23,3 @@ jobs:
         with:
           repo-token: ${{secrets.GITHUB_TOKEN}}
           image-name: ${{env.DOCKER_IMAGE_NAME}}
-          tag: latest
