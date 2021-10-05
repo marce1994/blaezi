@@ -1,4 +1,5 @@
 # 🔥 blaezi
+# to test
 
 blaezi is a super-lightweight smoke testing tool with zero dependencies, written purely in Go.
 
